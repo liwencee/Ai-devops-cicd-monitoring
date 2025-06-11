@@ -24,15 +24,6 @@ jobs:
           cd frontend
           docker build -t frontend .
 
-          set -e
-          if [ -d "frontend" ]; then
-            cd frontend
-            echo "Successfully changed to frontend directory"
-          else
-            echo "frontend directory not found"
-            exit 1  # Exit with a non-zero code to indicate an error
-          fi
-
       - name: Run AI test predictor
         run: |
           pip install -r ai/requirements.txt || echo 'requirements.txt not found'
