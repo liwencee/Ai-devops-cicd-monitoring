@@ -1,0 +1,5 @@
+INFO: All systems go
+ERROR: Out of memory
+INFO: Running health check
+EXCEPTION: Null pointer
+FAIL: Service not responding
