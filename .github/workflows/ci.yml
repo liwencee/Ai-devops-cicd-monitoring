@@ -19,17 +19,17 @@ jobs:
           cd backend
           docker build -t backend .
 
-      - name: Build Frontend
+      - name: Build frontend
         run: |
-          cd Frontend
-          docker build -t Frontend .
+          cd frontend
+          docker build -t frontend .
 
           set -e
-          if [ -d "Frontend" ]; then
-            cd Frontend
-            echo "Successfully changed to Frontend directory"
+          if [ -d "frontend" ]; then
+            cd frontend
+            echo "Successfully changed to frontend directory"
           else
-            echo "Frontend directory not found"
+            echo "frontend directory not found"
             exit 1  # Exit with a non-zero code to indicate an error
           fi
 
