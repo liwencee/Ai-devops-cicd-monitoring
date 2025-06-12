@@ -1,0 +1,7 @@
+openai
+requests
+tqdm
+# Additional libraries that might be useful for AI projects
+numpy
+pandas
+scikit-learn
