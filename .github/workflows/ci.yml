@@ -30,6 +30,8 @@ jobs:
           python ai/log_classifier.py || echo 'log_classifier.py failed'
 
       - name: Run Slack alert test
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
           echo "Testing Slack alert..."
           python tests/test_slack_alert.py || echo 'Slack alert test failed'
