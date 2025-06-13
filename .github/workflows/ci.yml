@@ -10,8 +10,8 @@ on:
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-  BACKEND_IMAGE: yourdockerhubuser/backend   # replace with your Docker Hub repo
-  FRONTEND_IMAGE: yourdockerhubuser/frontend # replace with your Docker Hub repo
+  BACKEND_IMAGE: lehqan/backend   # replace with your Docker Hub repo
+  FRONTEND_IMAGE: lehqan/frontend # replace with your Docker Hub repo
 
 jobs:
   build-and-test:
