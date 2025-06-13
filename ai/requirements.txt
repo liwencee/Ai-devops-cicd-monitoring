@@ -1,1 +1,10 @@
-openai
+openai  
+requests
+# Additional libraries that might be useful for AI applications
+numpy           
+pandas
+scikit-learn 
+       
+tensorflow         # For deep learning tasks
+torch              # For deep learning tasks                
+
