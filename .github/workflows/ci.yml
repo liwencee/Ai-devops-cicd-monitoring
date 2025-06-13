@@ -1,17 +1,11 @@
+# Directory: .github/workflows/ci.yml
 name: CI Pipeline
-
 on:
   push:
     branches:
       - main
   pull_request: {}
-
-env:
-  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-  DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-  BACKEND_IMAGE: lehqan/backend
-  FRONTEND_IMAGE: lehqan/frontend
-
+  
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -19,23 +13,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
       - name: Build backend
         run: |
           cd backend
-          docker build -t $BACKEND_IMAGE:latest .
-          docker push $BACKEND_IMAGE:latest
+          docker build -t backend .
 
       - name: Build frontend
         run: |
           cd frontend
-          docker build -t  $FRONTEND_IMAGE:latest .
-          docker push  $FRONTEND_IMAGE:latest
+          docker build -t frontend .
+
+     
 
       - name: Run AI test predictor
         run: |
