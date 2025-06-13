@@ -1,29 +1,45 @@
 # Directory: .github/workflows/ci.yml
 name: CI Pipeline
+
 on:
   push:
     branches:
       - main
   pull_request: {}
-  
+
+env:
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  BACKEND_IMAGE: yourdockerhubuser/backend   # replace with your Docker Hub repo
+  FRONTEND_IMAGE: yourdockerhubuser/frontend # replace with your Docker Hub repo
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ env.DOCKERHUB_USERNAME }}
+          password: ${{ env.DOCKERHUB_TOKEN }}
+
       - name: Build backend
         run: |
-          cd backend
-          docker build -t backend .
+          docker build -t $BACKEND_IMAGE:latest ./backend
 
       - name: Build frontend
         run: |
-          cd frontend
-          docker build -t frontend .
+          docker build -t $FRONTEND_IMAGE:latest ./frontend
 
-     
+      - name: Push backend to Docker Hub
+        run: docker push $BACKEND_IMAGE:latest
+
+      - name: Push frontend to Docker Hub
+        run: docker push $FRONTEND_IMAGE:latest
 
       - name: Run AI test predictor
         run: |
