@@ -1,37 +1,12 @@
 # Directory: .github/workflows/ci.yml
 name: CI Pipeline
-
 on:
   push:
     branches:
       - main
   pull_request: {}
-
-# This workflow builds and pushes a Docker image to Docker Hub
-
-env:
-  IMAGE_NAME: your-dockerhub-username/your-image-name
-
+  
 jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build Docker image
-        run: docker build -t $IMAGE_NAME:latest .
-
-      - name: Push image to Docker Hub
-        run: docker push $IMAGE_NAME:latest
-
   build-and-test:
     runs-on: ubuntu-latest
     steps:
@@ -47,6 +22,20 @@ jobs:
         run: |
           cd frontend
           docker build -t frontend .
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build Docker image
+        run: docker build -t $IMAGE_NAME:latest .
+
+      - name: Push image to Docker Hub
+        run: docker push $IMAGE_NAME:latest   
 
       - name: Run AI test predictor
         run: |
