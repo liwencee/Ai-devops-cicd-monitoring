@@ -2,4 +2,10 @@ INFO: All systems go
 ERROR: Out of memory
 INFO: Running health check
 EXCEPTION: Null pointer
-FAIL: Service not responding
+```plaintext
+FAIL: Service not responding {"line": 5, "level": "FAIL", "message": "Service not responding"}
+]
+  {"line": 2, "level": "ERROR", "message": "Out of memory"},
+  {"line": 4, "level": "EXCEPTION", "message": "Null pointer"},
+  {"line": 5, "level": "FAIL", "message": "Service not responding"}
+]
