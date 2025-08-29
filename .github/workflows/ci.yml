@@ -36,5 +36,8 @@ jobs:
         run: |
           cd frontend
           docker build -t frontend .
+      - name: Scrape log for errors
+        run: |
+          python ai/scrape_log.py > error_output.txt
 
      
