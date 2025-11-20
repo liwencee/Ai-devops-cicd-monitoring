@@ -147,9 +147,3 @@ yaml
 Copy
 Edit
 
----
-
-Let me know if you'd like:
-- A logo or banner for the project
-- Badges (build passing, license, etc.)
-- GitHub repo formatting (with a `CONTRIBUTING.md`, `LICENSE`, etc.)
